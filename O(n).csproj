@@ -1,0 +1,16 @@
+<Project Sdk="Godot.NET.Sdk/4.4.1">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <RootNamespace>PipelineArchitect</RootNamespace>
+    <AssemblyName>O(n)</AssemblyName>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+  </PropertyGroup>
+
+  <!-- Keep the headless xUnit suite out of the Godot game assembly. -->
+  <ItemGroup>
+    <Compile Remove="Tests/**" />
+    <Compile Remove="Tests\**" />
+  </ItemGroup>
+</Project>

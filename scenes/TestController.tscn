@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://dguyy2e2f0muq"]
+
+[ext_resource type="Script" path="res://src/Testing/TestController.cs" id="1_test"]
+
+[node name="TestController" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_test")
+SimulationSpeed = 0.2
+TopBar = NodePath("SmokeTestLayout/TopBar")
+HeaderTitleLabel = NodePath("SmokeTestLayout/TopBar/TopBarBody/HeaderTitle")
+HeaderSubtitleLabel = NodePath("SmokeTestLayout/TopBar/TopBarBody/HeaderSubtitle")
+CpuMeter = NodePath("SmokeTestLayout/TopBar/TopBarBody/CpuMeter")
+ConveyorBelt = NodePath("SmokeTestLayout/ConveyorSection/ConveyorBelt")
+RunButton = NodePath("SmokeTestLayout/BottomBar/RunButton")
+
+[node name="SmokeTestLayout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="TopBar" type="PanelContainer" parent="SmokeTestLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TopBarBody" type="VBoxContainer" parent="SmokeTestLayout/TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderTitle" type="Label" parent="SmokeTestLayout/TopBar/TopBarBody"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Pipeline Architect"
+
+[node name="HeaderSubtitle" type="Label" parent="SmokeTestLayout/TopBar/TopBarBody"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "CPU Cycles  ·  Time Complexity Trace"
+
+[node name="CpuMeter" type="ProgressBar" parent="SmokeTestLayout/TopBar/TopBarBody"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+show_percentage = false
+
+[node name="ConveyorSection" type="VBoxContainer" parent="SmokeTestLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="ConveyorLabel" type="Label" parent="SmokeTestLayout/ConveyorSection"]
+layout_mode = 2
+text = "CONVEYOR BELT  ·  DATA STREAM"
+horizontal_alignment = 1
+
+[node name="ConveyorBelt" type="HBoxContainer" parent="SmokeTestLayout/ConveyorSection"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="BottomBar" type="HBoxContainer" parent="SmokeTestLayout"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="RunButton" type="Button" parent="SmokeTestLayout/BottomBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 48)
+layout_mode = 2
+text = "▶ RUN PIPELINE"

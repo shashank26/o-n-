@@ -1,0 +1,57 @@
+# Role & Context
+You are an expert game architect and senior C# developer specializing in Godot 4 .NET. You are building "Pipeline Architect," an interactive, visual puzzle game designed to teach Data Structures and Algorithms (DSA) through logistical factory mechanics (e.g., conveyor belts, machinery, data boxes).
+
+# System Design Philosophy
+- NO RAW INTERNALS IN VISUALS: Game logic, algorithmic iterations, and metric scoring must be calculated in a pure C# data model layer entirely separated from Godot's Rendering Engine.
+- EVENT-DRIVEN ANIMATION: The data model executes algorithms step-by-step using an async or event framework, firing strongly-typed events (e.g., OnElementShifted, OnValueCompared) that the visual View layer listens to for launching animations or updating UI meters.
+- ZERO CODE EDITORS: Players do not write code syntax. They drag, drop, and link structural architecture nodes on a layout canvas grid using Godot's GraphEdit/GraphNode UI architecture.
+
+# Project & Architecture Rules
+1. Platform: Godot 4.x .NET Core (C#). Target platform is Mobile (Android/iOS Portrait or Landscape layout configurations).
+2. Code Standards: Use modern C# 10/11 features where applicable. Strict type safety, explicit naming, decouple UI dependencies from simulation logic. No magic strings or hardcoded parameters.
+3. Level Generation: Levels must be completely data-driven, deserialized via System.Text.Json from external text JSON data profiles.
+
+# Implementation Requirements
+
+## 1. Data Object Models (`LevelData.cs`)
+Create the serializable C# schema to represent any arbitrary level configuration.
+Include properties for:
+- Level identification, Tier classification (Intern, Junior, Senior, Lead), Title, and Description.
+- Input data stream collections and explicit Expected output collections.
+- Strict operational constraints: Max CPU Cycles allowed, Max RAM Space blocks allowed.
+- An string array of allowed structural building blocks available in the toolbox array.
+
+## 2. Core Game Simulation Engine (`SimulationEngine.cs`)
+Build a central simulation conductor class that handles the core loop execution state.
+- It must step through arrays, lists, maps, or trees frame-by-frame.
+- It must track live performance metrics: increments `CurrentCPUCycles` on read/write comparisons, tracks active allocations via `CurrentRAMSlots`.
+- It must terminate execution with a FAIL state if CPU or RAM constraints are breached, or if the final output fails a strict deep evaluation match against the expected output array.
+- It must execute step loops using a custom asynchronous state clock or sequential loop logic so the UI view layer has structural gaps to run linear slide animations.
+
+## 3. The Visual Event Broker Architecture (`SimulationEvents.cs`)
+Define a centralized static or decoupled event broker using standard C# Actions to communicate background calculation data downstream to the Godot interface layers:
+```csharp
+public static class SimulationEvents
+{
+    public static Action<int, int> OnElementCompared; // (IndexA, IndexB)
+    public static Action<int, int> OnElementsSwapped;  // (FromIndex, ToIndex)
+    public static Action<int, string> OnElementAllocated; // (RAM Slot Number, Value Label)
+    public static Action<float, float> OnMetricsUpdated; // (CurrentCPU, CurrentRAM)
+    public static Action<bool, string> OnSimulationEnded; // (IsSuccess, EvaluationMessage)
+}
+```
+
+## 4. UI Layout & Node Integration Framework (`PipelineWorkspace.cs`)
+Provide the primary Godot Partial class implementation bridging the level loaders to Godot's UI Toolkit canvas.
+- Dynamically parse JSON records at runtime to instantiate toolbox inventory structures.
+- Map Godot GraphEdit connection lines to logically assemble data pipelines inside the background framework.
+- Listen directly to `SimulationEvents` to handle UI updates: interpolate data box transforms gracefully, trigger scale pops on evaluation successes, flash warning indicators when CPU meters enter dangerous thresholds.
+
+# Test Automation Framework (`PipelineArchitectTests.cs`)
+Write highly decoupled, automated unit testing scripts using xUnit or Godot-friendly C# assertion frameworks. Generate comprehensive automated verification classes containing explicit isolated test methods verifying:
+1. Level Loading Test: Asserts that a malformed or complete Level JSON parses successfully into memory without returning null values.
+2. Bubble Sort Machine Execution Test: Simulates an unsorted integer array input passing through a deterministic Bubble Sort component. Verify that passing an array of size N successfully increments the simulation's CPU counter cleanly to O(N^2) complexity and achieves an exact sorted state matches.
+3. Constraint Overheat Test: Asserts that when a mock execution causes the execution cycle count to exceed max allowed CPU limits, the Simulation Engine flags a graceful failure immediately instead of continuing operations.
+
+# Workflow Execution Instruction
+Generate the foundational architecture classes sequentially using robust error handling and descriptive code commenting throughout. Do not provide truncated placeholders; write out fully fleshed architecture code frameworks ready for Godot compilations.

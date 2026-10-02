@@ -1,0 +1,79 @@
+{
+  "levelId": "intern_01",
+  "tier": "Intern",
+  "title": "Sort the Shipment",
+  "description": "Figure out how to order the shipment, then build a machine that does the repetitive work for you.",
+  "inputStream": [5, 1, 4, 2, 8],
+  "expectedOutput": [1, 2, 4, 5, 8],
+  "budgets": {
+    "maxCPUCycles": 30,
+    "maxRAMSlots": 2
+  },
+  "allowedToolbox": [
+    "Bubble_Sort_Machine",
+    "Unsorted_Storage_Box"
+  ],
+  "visualSkin": "Toy_Bricks",
+  "interactiveChallenge": {
+    "enabled": true,
+    "challengeId": "adjacent_sort_discovery",
+    "playerTitle": "Sort the Shipment",
+    "playerDescription": "The packages are out of order.\nCan you figure out how to move them into the correct order?",
+    "initialValues": [5, 4, 3, 2, 1],
+    "revealConceptAfterCompletion": true,
+    "conceptName": "Bubble Sort",
+    "conceptExplanation": "Bubble Sort repeatedly compares neighboring values.\nWhen two values are in the wrong order, they are swapped.\nEach pass moves the largest remaining value toward the end.",
+    "machineBlockId": "Bubble_Sort_Machine",
+    "machineRevealTitle": "Meet Your New Machine",
+    "machineRevealBody": "You just performed the process yourself.\nNow let's make the machine do the repetitive work.",
+    "practiceChallenge": {
+      "enabled": true,
+      "challengeId": "adjacent_sort_practice",
+      "playerTitle": "Sort It Yourself",
+      "playerDescription": "You know how this works. Now sort the shipment yourself.",
+      "initialValues": [5, 4, 3, 2, 1]
+    },
+    "masteryChallenge": {
+      "enabled": true,
+      "challengeId": "adjacent_sort_practice",
+      "playerTitle": "Final Challenge",
+      "playerDescription": "Show that you can do it on a new shipment.",
+      "initialValues": [4, 1, 5, 2, 3]
+    }
+  },
+  "optimalCreator": {
+    "algorithmName": "Merge Sort",
+    "inventorName": "John von Neumann",
+    "inventionYear": 1945,
+    "avatarTexturePath": "res://Assets/Textures/Avatars/von_neumann.png",
+    "historicalContext": "Invented while working on the EDVAC computer system.",
+    "kidFriendlyStory": "John was a brilliant scientist who realized cleaning a mess is easier in small piles!"
+  },
+  "tutorialSteps": [
+    {
+      "stepIndex": 0,
+      "message": "1. Tap Bubble Sort in Available Machines to place it on the factory floor.",
+      "targetElement": "Toolbox"
+    },
+    {
+      "stepIndex": 1,
+      "message": "2. Drag from Input Shipment's OUT port into Bubble Sort's IN port.",
+      "targetElement": "InputPort"
+    },
+    {
+      "stepIndex": 2,
+      "message": "3. Connect Bubble Sort's OUT port to the Output IN port.",
+      "targetElement": "MachineOutPort"
+    },
+    {
+      "stepIndex": 3,
+      "message": "4. Press Execute Factory to test your design.",
+      "targetElement": "RunButton"
+    },
+    {
+      "stepIndex": 4,
+      "message": "Your factory has finished. You can watch the execution to understand how Bubble Sort processed the shipment — or skip if you just want the result.",
+      "targetElement": "ExecutionStatus"
+    }
+  ]
+}
